@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGLON — Dev3x</title>
+<meta name="description" content="AGLON: filterless air purification via ultrasonic acoustic agglomeration and self-calibrating electrostatic collection.">
+<link rel="stylesheet" href="../css/main.css">
+<style>
+  /* AGLON theme — matched to the project's real dark + mint UI */
+  body{
+    --blueprint:#081210; --blueprint-raise:#0F1F1B; --line:#24443B; --line-soft:#172C26;
+    --paper:#E9F5F0; --paper-dim:#A9C9BE; --paper-faint:#5F8478; --signal:#3ED9A0;
+  }
+</style>
+</head>
+<body>
+<script src="../js/bg.js"></script>
+<header class="topbar">
+  <a href="../index.html" class="brand">Dev3x</a>
+  <button class="nav-toggle" aria-label="Toggle navigation">MENU</button>
+  <nav class="topnav">
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="skills.html">Skills</a>
+        <a href="about.html">About</a>
+        <a href="suggest-idea.html">Suggest an idea</a>
+        <a href="coming-soon.html">Coming soon</a>
+        <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<div class="regmark tl" aria-hidden="true"></div>
+<div class="regmark tr" aria-hidden="true"></div>
+<div class="regmark bl" aria-hidden="true"></div>
+<div class="regmark br" aria-hidden="true" onclick="window.location.href='covenant.html'"></div>
+<main>
+    <div class="content-narrow">
+      <span class="hero-eyebrow">Applied Physics · Electronics · Engineering</span>
+      <h1>AGLON</h1>
+      <p class="hero-lede">Filterless air purification — ultrasonic acoustic agglomeration and self-calibrating electrostatic collection, designed to remove disposable filter media from air purification entirely.</p>
+
+      <img src="../assets/projects/aglon.png" alt="AGLON — the last purifier you'll ever buy" style="width:100%;border:1px solid var(--line-soft);margin:1.6rem 0;">
+
+      <div class="meta-row">
+        <div><span class="k">Status</span><span class="v">Provisional spec drafted, not yet filed</span></div>
+        <div><span class="k">Category</span><span class="v">Applied Engineering / Physics</span></div>
+        <div><span class="k">Core spec</span><span class="v">40kHz, 8× transducers, 85×85×170mm chamber</span></div>
+        <div><span class="k">Inventor</span><span class="v">Divyansh Sharma (Dev3x)</span></div>
+      </div>
+
+      <span class="callout">A note on status: the project's own site currently shows conflicting language between a header banner ("patent pending") and its IP section ("drafted — pending filing"). The accurate status is: <strong>a provisional patent specification has been drafted and is not yet filed.</strong> No patent has been granted. No commercial-scale validation exists. This is engineering documentation, not a manufactured product.</span>
+
+      <span class="section-head">CORE PROBLEM</span>
+      <p>HEPA filter media has been the default in air purification for four decades — not because it's the best solution, but because nothing replaced it. Three structural costs come with every filter-based device sold today.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="num">₹10–15K</span><span class="lbl">spent annually per household on filter replacements in high-AQI Indian cities</span></div>
+        <div class="stat"><span class="num">&lt;0.3µm</span><span class="lbl">the particle size HEPA media is rated for — below which capture efficiency drops</span></div>
+        <div class="stat"><span class="num">0</span><span class="lbl">recycling pathways for used HEPA filters at consumer scale, anywhere</span></div>
+      </div>
+
+      <span class="section-head">ARCHITECTURE — SIX STAGES, ZERO FILTERS</span>
+
+      <div class="stage">
+        <span class="n">01</span>
+        <div><h3>360° Intake & Bipolar Ionization</h3><p>Air enters through a perforated grille on all four sides of the base. A needle-point electrode array charges incoming particles via a localized corona field — chosen over wire ionization specifically to suppress ozone at the source.<span class="tagline">Ozone-minimizing by design</span></p></div>
+      </div>
+      <div class="stage">
+        <span class="n">02</span>
+        <div><h3>Ultrasonic Agglomeration Chamber</h3><p>Eight piezoelectric transducers in two opposing arrays generate standing acoustic waves at 40kHz inside a resonant chamber sized to wavelength multiples. A labyrinth baffle path extends particle dwell time roughly 4×, forcing sub-micron particles to cluster into agglomerates large enough to capture.<span class="tagline">Core novel mechanism</span></p></div>
+      </div>
+      <div class="stage">
+        <span class="n">03</span>
+        <div><h3>Self-Calibrating Drive Circuit</h3><p>Transducers vary batch-to-batch and drift with heat and age. The drive circuit sweeps at startup to find the real resonant peak of the installed array and locks to it — no factory tuning, no performance loss over the device's lifetime.<span class="tagline">Patent claim</span></p></div>
+      </div>
+      <div class="stage">
+        <span class="n">04</span>
+        <div><h3>Electrostatic Collection Plates</h3><p>Seven parallel anodized aluminum plates, spaced 6mm apart, capture charged agglomerated clusters. Grooved surfaces slow fouling; a capacitance sensor detects buildup and triggers a cleaning alert.<span class="tagline">Washable — no consumable</span></p></div>
+      </div>
+      <div class="stage">
+        <span class="n">05</span>
+        <div><h3>Catalytic Ozone Decomposition</h3><p>A manganese dioxide–coated mesh passively converts residual ozone back into oxygen at room temperature — no power draw, multi-year catalytic lifespan.<span class="tagline">Passive, zero-power</span></p></div>
+      </div>
+      <div class="stage">
+        <span class="n">06</span>
+        <div><h3>UV-C Sterilization</h3><p>LEDs irradiate captured material directly on the plates rather than air in transit — exposure time is continuous instead of the fraction of a second airflow allows.<span class="tagline">Stationary-target UV-C</span></p></div>
+      </div>
+
+      <span class="section-head">WHAT I LEARNED</span>
+      <p>Designing a six-stage physical system from first principles — without lab access — forces you to be honest about what's proven with math and datasheets versus what still needs bench testing. The self-calibrating drive circuit (Stage 03) came directly out of realizing that fixed-frequency tuning would fail the moment a transducer aged or a batch varied.</p>
+
+      <span class="section-head">NEXT STEP</span>
+      <p>Bench-testing the acoustic agglomeration claim physically, and deciding whether to file the provisional specification within the priority window.</p>
+
+      <div class="btnrow">
+        <a class="btn" href="https://aglon.netlify.app/" target="_blank" rel="noopener">View live site ↗</a>
+        <a class="btn" href="projects.html">← Back to projects</a>
+      </div>
+    </div>
+    <footer class="page-footer">
+      Dev3x — Divyansh Sharma
+      <div class="contact-strip">
+        <a href="mailto:devex.deva@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          devex.deva@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/divyansh-sharma-0a1b8538b/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2zM1.4 8.3h3.2V22H1.4V8.3zM8.6 8.3h3v1.9h.05c.42-.8 1.5-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5V22h-3.2v-6.4c0-1.5 0-3.5-2.1-3.5s-2.4 1.6-2.4 3.4V22H8.6V8.3z"/></svg>
+          linkedin.com/in/divyansh-sharma
+        </a>
+      </div>
+    </footer>
+  </main>
+<script src="../js/main.js"></script>
+</body>
+</html>

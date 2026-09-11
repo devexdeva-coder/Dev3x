@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon — Dev3x</title>
+<link rel="stylesheet" href="../css/main.css">
+<style>
+  html, body{ height:100%; overflow:hidden; }
+  .topbar{ background:var(--blueprint); }
+  .cs-screen{
+    height:calc(100vh - 65px); display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    position:relative; z-index:1; padding:1rem 1.5rem;
+  }
+  .cs-screen img{
+    max-width:min(70vw, 680px); max-height:48vh; width:auto; height:auto;
+    mix-blend-mode:multiply;
+    margin-bottom:1.4rem;
+  }
+  .cs-tag{ color:var(--signal); font-size:0.95rem; margin-bottom:0.4rem; }
+  .cs-screen h1{ font-size:clamp(1.6rem,3.6vw,2.3rem); margin-bottom:1.1rem; }
+  @media (max-width:700px){
+    html, body{ overflow:auto; }
+    .cs-screen{ height:auto; min-height:calc(100vh - 65px); padding:3rem 1.2rem; }
+    .cs-screen img{ max-height:none; mix-blend-mode:normal; border-radius:8px; }
+  }
+</style>
+</head>
+<body>
+<script src="../js/bg.js"></script>
+<header class="topbar">
+  <a href="../index.html" class="brand">Dev3x</a>
+  <button class="nav-toggle" aria-label="Toggle navigation">MENU</button>
+  <nav class="topnav">
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="skills.html">Skills</a>
+        <a href="about.html">About</a>
+        <a href="suggest-idea.html">Suggest an idea</a>
+        <a href="coming-soon.html" class="active">Coming soon</a>
+        <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<div class="regmark tl" aria-hidden="true"></div>
+<div class="regmark tr" aria-hidden="true"></div>
+<div class="regmark bl" aria-hidden="true"></div>
+<div class="regmark br" aria-hidden="true" onclick="window.location.href='covenant.html'"></div>
+
+<div class="cs-screen">
+  <img src="../assets/flybrain.jpg" alt="A full reconstruction of a fruit fly brain's neural wiring">
+  <span class="cs-tag">THE NEXT RESEARCH FRONTIER</span>
+  <h1>Something new is being investigated.</h1>
+  <a class="btn primary" href="../index.html">Return to Dev3x</a>
+</div>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

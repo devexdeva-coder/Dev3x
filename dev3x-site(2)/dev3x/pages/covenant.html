@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Children of the Covenant</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital@0;1&display=swap');
+  :root{
+    --navy: #0B1830;
+    --navy-raise: #10203E;
+    --gold: #D4AF37;
+    --gold-dim: #8A7127;
+    --paper: #EDE4C8;
+    --paper-dim: #B9AF95;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; min-height:100vh;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.06) 0%, transparent 55%),
+      var(--navy);
+    color:var(--paper);
+    font-family:'EB Garamond', Georgia, serif;
+    display:flex; align-items:center; justify-content:center;
+    padding:3rem 1.4rem;
+  }
+  .frame{
+    max-width:640px; text-align:center;
+    border:1px solid var(--gold-dim);
+    padding:3rem 2.4rem;
+    position:relative;
+  }
+  .frame::before, .frame::after{
+    content:''; position:absolute; width:26px; height:26px;
+    border:1px solid var(--gold);
+  }
+  .frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+  .found{
+    font-family:'Playfair Display', serif; font-style:italic; font-weight:500;
+    color:var(--gold); font-size:1.2rem; margin-bottom:1.6rem;
+  }
+  h1{
+    font-family:'Playfair Display', serif; font-weight:700;
+    font-size:clamp(2rem,5vw,2.8rem); margin:0 0 0.3rem; color:var(--paper);
+    letter-spacing:0.01em;
+  }
+  .subtitle{ font-style:italic; color:var(--paper-dim); margin-bottom:2rem; font-size:1.05rem; }
+  p.blurb{ font-size:1.08rem; line-height:1.75; color:var(--paper); text-align:left; margin-bottom:2.2rem; }
+  .cover-btn{
+    display:inline-block; border:none; background:none; padding:0; cursor:pointer;
+    transition:transform 0.2s ease;
+  }
+  .cover-btn:hover{ transform:translateY(-4px); }
+  .cover-btn img{
+    width:200px; border-radius:3px;
+    box-shadow:0 25px 50px -12px rgba(0,0,0,0.7), 0 0 0 1px var(--gold-dim);
+  }
+  .cover-hint{ margin-top:1rem; font-size:0.85rem; color:var(--paper-dim); font-style:italic; }
+  .back{
+    display:inline-block; margin-top:2.6rem;
+    font-size:0.9rem; color:var(--paper-dim);
+    border-bottom:1px solid var(--gold-dim); text-decoration:none;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="found">You found something special.</div>
+  <h1>Children of the Covenant</h1>
+  <p class="subtitle">A History of the Jewish People — Their Records, Their Myths, and the Legends Made of Both</p>
+
+  <p class="blurb">
+    Three thousand years of recorded history and living mythology, traced by
+    Divyansh Sharma from the archaeology of ancient Israel through the golden
+    age of Jewish mysticism, the medieval centuries of persecution, the rise
+    of the great banking dynasties, and the birth of a modern state — always
+    keeping documented fact separate from myth, and myth separate from the
+    slanders built to look like both.
+  </p>
+
+  <button class="cover-btn" onclick="orderBook()">
+    <img src="../assets/book-cover.png" alt="Children of the Covenant — book cover">
+  </button>
+  <div class="cover-hint">Click the cover to inquire</div>
+
+  <div><a class="back" href="../index.html">Return to Dev3x</a></div>
+</div>
+
+<script>
+  function orderBook(){
+    const subject = encodeURIComponent("Children of the Covenant — inquiry");
+    const body = encodeURIComponent("Hi Divyansh,\n\nI would like to purchase it.\n\n");
+    window.location.href = "mailto:devex.deva@gmail.com?subject=" + subject + "&body=" + body;
+  }
+</script>
+</body>
+</html>

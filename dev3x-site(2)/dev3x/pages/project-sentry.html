@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTRY — Dev3x</title>
+<meta name="description" content="SENTRY: runtime behavioral instrumentation for AI agents. Deterministic detection, LLM narration only.">
+<link rel="stylesheet" href="../css/main.css">
+<style>
+  /* SENTRY theme — matched to the project's real near-black + gold UI */
+  body{
+    --blueprint:#0B0B0C; --blueprint-raise:#17130A; --line:#3A3226; --line-soft:#241F17;
+    --paper:#EDE7DA; --paper-dim:#B8AE9A; --paper-faint:#7A705C; --signal:#D8A94E;
+  }
+</style>
+</head>
+<body>
+<script src="../js/bg.js"></script>
+<header class="topbar">
+  <a href="../index.html" class="brand">Dev3x</a>
+  <button class="nav-toggle" aria-label="Toggle navigation">MENU</button>
+  <nav class="topnav">
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="skills.html">Skills</a>
+        <a href="about.html">About</a>
+        <a href="suggest-idea.html">Suggest an idea</a>
+        <a href="coming-soon.html">Coming soon</a>
+        <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<div class="regmark tl" aria-hidden="true"></div>
+<div class="regmark tr" aria-hidden="true"></div>
+<div class="regmark bl" aria-hidden="true"></div>
+<div class="regmark br" aria-hidden="true" onclick="window.location.href='covenant.html'"></div>
+<main>
+    <div class="content-narrow">
+      <span class="hero-eyebrow">AI Security · Runtime Monitoring</span>
+      <h1>SENTRY</h1>
+      <p class="hero-lede">Runtime behavioral instrumentation for AI agents. UEBA exists for humans — not yet for the agents acting on their behalf.</p>
+
+      <img src="../assets/projects/sentry.png" alt="SENTRY interface — UEBA exists for humans, not yet for agents" style="width:100%;border:1px solid var(--line-soft);margin:1.6rem 0;">
+
+      <div class="meta-row">
+        <div><span class="k">Status</span><span class="v">Working prototype, tested</span></div>
+        <div><span class="k">Category</span><span class="v">AI Security / Observability</span></div>
+        <div><span class="k">Stack</span><span class="v">Python · FastAPI · Groq</span></div>
+        <div><span class="k">Source</span><span class="v"><a href="https://github.com/devexdeva-coder/Sentry" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line)">GitHub ↗</a></span></div>
+      </div>
+
+      <span class="section-head">THREAT MODEL</span>
+      <p>Agentic AI reached production faster than the tooling to monitor it. Most defenses screen prompts and outputs before an agent acts — nobody watches what the agent actually <em>does</em> once it has real tool access.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="num">88%</span><span class="lbl">of orgs report a confirmed or suspected agent security incident this year</span></div>
+        <div class="stat"><span class="num">68%</span><span class="lbl">of those incidents trace to prompt injection</span></div>
+        <div class="stat"><span class="num">61%</span><span class="lbl">involve sensitive data exposure</span></div>
+        <div class="stat"><span class="num">42%</span><span class="lbl">of orgs use any form of agent activity monitoring at all</span></div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--paper-faint)">Sources: Gravitee State of AI Agent Security 2026 · Cloud Security Alliance / Token Security, Apr 2026 · NeuralTrust State of AI Agent Security 2026 — as cited on the live project site.</p>
+
+      <span class="section-head">ARCHITECTURE / DETECTION PIPELINE</span>
+      <p>Three deterministic checks run before any model is involved. The LLM never decides what's suspicious — it only narrates what the math already found.</p>
+      <div class="flow">
+        <span class="node">Agent action</span><span class="arrow">→</span>
+        <span class="node">Policy check</span>
+        <span class="node">Burst-rate check</span>
+        <span class="node">Destination check</span>
+        <span class="arrow">→</span><span class="node">Alert</span>
+        <span class="arrow">→</span><span class="node">LLM narrator</span>
+        <span class="arrow">→</span><span class="node">Plain-English summary</span>
+      </div>
+      <p>Everything left of "Alert" is plain code — statistics and set membership, zero model calls.</p>
+
+      <span class="section-head">BEHAVIOR BASELINE</span>
+      <p>SENTRY learns what "normal" tool-use looks like for a given agent, then flags the moment a hijacked agent breaks its own pattern.</p>
+
+      <span class="section-head">SIMULATION</span>
+      <p>The live site includes a simplified client-side reimplementation of the same three checks the real detector runs, with a "learn baseline" then "inject attack" flow you can try directly.</p>
+      <div class="btnrow">
+        <a class="btn primary" href="https://sentryy.netlify.app/#demo" target="_blank" rel="noopener">Try the live simulation ↗</a>
+      </div>
+
+      <span class="section-head">FAILURE</span>
+      <p>The first version only compared daily call totals against baseline. A simulated attack — 25 rapid database queries in two minutes — didn't fire, because 25 calls looked entirely normal against a ~17/day baseline. The burst was invisible on a daily view.</p>
+
+      <span class="section-head">FIX</span>
+      <p>Added a 5-minute rolling-window burst detector, plus cooldown logic so one incident fires once instead of producing fifteen duplicate alerts.</p>
+
+      <span class="section-head">RESULT</span>
+      <div class="honest-box">
+        <span class="h">HONEST TAKE — from the project's own README</span>
+        <p style="margin-bottom:0.8rem"><strong>What's real:</strong> the detection engine is tested — zero false positives across 284 normal baseline actions, 3 out of 3 real attack signals caught, verified by running the actual test suite, not assumed.</p>
+        <p style="margin-bottom:0"><strong>What's not yet true:</strong> the baseline is synthetic, not real production traffic. Both the attack and the detector were designed in-house, so this proves the logic works as intended — it has not been adversarially red-teamed by someone trying to evade it. Thresholds are hand-tuned on one scenario, not validated at scale.</p>
+      </div>
+
+      <span class="section-head">FUTURE WORK</span>
+      <p>Testing against real, unlabeled production traffic; inviting adversarial red-teaming from outside; validating thresholds across more scenarios than the one this was designed against.</p>
+
+      <span class="section-head">STACK</span>
+      <div class="skill-items">
+        <span>Python</span><span>FastAPI</span><span>Vanilla JS / Canvas</span>
+        <span>Groq · Llama 3.3 70B</span><span>pywebview</span><span>Arch Linux</span><span>Ubuntu</span>
+      </div>
+
+      <div class="btnrow">
+        <a class="btn" href="https://sentryy.netlify.app/" target="_blank" rel="noopener">View live site ↗</a>
+        <a class="btn" href="https://github.com/devexdeva-coder/Sentry" target="_blank" rel="noopener">Read the code ↗</a>
+        <a class="btn" href="projects.html">← Back to projects</a>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      Dev3x — Divyansh Sharma
+      <div class="contact-strip">
+        <a href="mailto:devex.deva@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          devex.deva@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/divyansh-sharma-0a1b8538b/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2zM1.4 8.3h3.2V22H1.4V8.3zM8.6 8.3h3v1.9h.05c.42-.8 1.5-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5V22h-3.2v-6.4c0-1.5 0-3.5-2.1-3.5s-2.4 1.6-2.4 3.4V22H8.6V8.3z"/></svg>
+          linkedin.com/in/divyansh-sharma
+        </a>
+      </div>
+    </footer>
+  </main>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
